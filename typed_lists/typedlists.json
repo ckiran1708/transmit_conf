@@ -1,0 +1,25 @@
+{
+    "reports": [
+        {
+            "path": "tsasm:///string_lists/client_channels_list",
+            "data": {
+                "metadata": {
+                    "created": 1738897890462,
+                    "type": "string_list",
+                    "updated": 1738897890462
+                },
+                "values": [],
+                "id": "client_channels_list"
+            },
+            "display_name": "client_channels_list",
+            "category": "string_list",
+            "type": "normal",
+            "constraints": [
+                {
+                    "server_version": "8.1.1",
+                    "type": "server_version"
+                }
+            ]
+        }
+    ]
+}

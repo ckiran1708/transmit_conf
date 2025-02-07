@@ -1,0 +1,86 @@
+ {
+        "reports": [
+            {
+                "path": "tsasm:///relying_parties/citi_oidcapp/citit_portal",
+                "data": {
+                    "refresh_token_expiry_in_seconds": 600,
+                    "require_pkce": true,
+                    "description": "This relying party has been created for citi bank",
+                    "request_obj_decoding_options": {
+                        "require_signature": false,
+                        "require_encryption": false
+                    },
+                    "redirect_uris": [
+                        {
+                            "policy_id": "idp_login",
+                            "uri": "https://oidcdebugger.com/debug"
+                        },
+                        {
+                            "policy_id": "idp_login",
+                            "uri": "http://ec2-13-234-63-22.ap-south-1.compute.amazonaws.com:8080/websdk/ts_web/app.html"
+                        }
+                    ],
+                    "allowed_client_credential_grant_scopes": [],
+                    "token_exchange_definitions": [],
+                    "enabled": true,
+                    "client_id": "citit_portal",
+                    "allowed_grant_types": [
+                        "authorization_code"
+                    ],
+                    "allow_max_age": false,
+                    "custom_params": {},
+                    "allowed_client_auth_methods": [
+                        "client_secret_basic",
+                        "client_secret_post",
+                        "client_secret_jwt",
+                        "private_key_jwt"
+                    ],
+                    "session_expiry_in_secs": 600,
+                    "access_token_strategy": "sign",
+                    "token_expiry_in_secs": 600,
+                    "client_secret": "******",
+                    "id": "WyJjaXRpdF9wb3J0YWwiLCJjaXRpX29pZGNhcHAiXQ==",
+                    "id_token_strategy": "sign",
+                    "allow_unauthenticated_pkce": false,
+                    "app_id": "citi_oidcapp"
+                },
+                "display_name": "citit_portal",
+                "category": "relying_parties",
+                "type": "normal",
+                "constraints": [
+                    {
+                        "server_version": "8.1.1",
+                        "type": "server_version"
+                    },
+                    {
+                        "application_type": "oidc",
+                        "type": "application_type"
+                    }
+                ]
+            },
+            {
+                "path": "tsasm:///applications/citi_oidcapp/policies/idp_login",
+                "category": "policy",
+                "display_name": "idp_login",
+                "type": "dont_import",
+                "constraints": [
+                    {
+                        "server_version": "8.1.1",
+                        "type": "server_version"
+                    }
+                ]
+            },
+            {
+                "path": "tsasm:///applications/citi_oidcapp",
+                "category": "application",
+                "display_name": "citi_oidcapp",
+                "type": "dont_import",
+                "constraints": [
+                    {
+                        "server_version": "8.1.1",
+                        "type": "server_version"
+                    }
+                ]
+            }
+        ]
+ }

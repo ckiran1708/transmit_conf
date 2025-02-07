@@ -1,1 +1,617 @@
-{"error_code":0,"error_message":"","data":{"reports":[{"path":"tsasm:///providers/a278bcba-0c5a-4bec-a9bc-f369ef3b7b94","data":{"provider_type":"function-web-request","name":"mocky_test","provider_id":"a278bcba-0c5a-4bec-a9bc-f369ef3b7b94","config":{"arguments":[],"wait_for_response":true,"type":"function-web-request","web_request":{"headers":[],"fail_on_non_2xx_response":false,"response_format":{"type":"json_object"},"ssl_identities":{"trusted_identities":[{"provider_type":"db","alias":"testCert","type":"trusted","version":"1"}]},"method":"post","connection_config":{"max_connections":null,"follow_redirect":false,"request_timeout":30,"max_connection_lifetime":null,"max_response_content_length":10485760,"idle_connection_in_pool_timeout":null,"use_cookie_store":false,"connection_timeout":5,"expose_internal_OIDC_APIs":false,"expose_internal_journey_login_api":false,"request_timeout_unit":"seconds","connection_timeout_unit":"seconds"},"body":{"type":"expression","value":"`{}`"},"uri":{"type":"expression","value":"`https://run.mocky.io/v3/460bad09-0daa-4cda-b23d-5195ba6c3823`"},"authentication":{"type":"no"},"logging_config":{"outgoing_requests_config":"off","ok_response_config":"off","failed_response_config":"off"}}},"enabled":true},"display_name":"mocky_test","category":"provider","type":"normal","constraints":[{"server_version":"8.1.1","type":"server_version"}]},{"path":"tsasm:///local_identities/db/oidc_key","display_name":"oidc_key / (db)","category":"localidentity","type":"missing","constraints":[{"server_version":"8.1.1","type":"server_version"}],"creation_data":{"expected_provider_type":"db","expected_alias":"oidc_key","type":"identity"}},{"path":"tsasm:///authproviders/62a0d53a-5923-4cd0-a8a8-5be5e12553ee","data":{"user_provider_id":"local-user-provider","method":"password","config_id":"62a0d53a-5923-4cd0-a8a8-5be5e12553ee","include_provider_response":false,"name":"testUsers"},"display_name":"testUsers","category":"authprovider","type":"normal","constraints":[{"server_version":"8.1.1","type":"server_version"}]},{"path":"tsasm:///providers/local-user-provider","data":{"provider_type":"user-local","name":"Test Users","provider_id":"local-user-provider","enabled":true},"display_name":"Test Users","category":"provider","type":"already_exist","constraints":[{"server_version":"8.1.1","type":"server_version"}]},{"path":"tsasm:///trusted_identities/db/testCert/1","display_name":"testCert / (db)","category":"trustedidentity","type":"missing","constraints":[{"server_version":"8.1.1","type":"server_version"}],"creation_data":{"expected_provider_type":"db","expected_alias":"testCert","expected_version":"1","type":"identity"}},{"path":"tsasm:///applications/citi_oidcapp","data":{"oidc_config":{"idp":{"base_url":{"type":"expression","value":"`http://ec2-13-234-63-22.ap-south-1.compute.amazonaws.com:8080`"},"claims":[],"client_claims":[]}},"token_config":{"token_headers":{},"default_strategy":"sign_and_encrypt","expiry":{"act":1800,"reg":1800,"auth":1800,"cfg":1800,"pld":1800},"local":{"provider_type":"db","alias":"oidc_key","type":"local"}},"user_association_config":{"strategy":{"type":"user_id"}},"allow_implicit_device_registration":true,"authenticators":[{"method":"password","level":1,"provider_config_id":"62a0d53a-5923-4cd0-a8a8-5be5e12553ee","category":"5649","enabled":true}],"policies":[{"policy_id":"default_bind","versions":[{"schema_version":2,"workflow":{"escapes":{"escapes":[]},"strings":[],"action":{"metadata":{"type":"auth_pass"},"type":"auth_pass"},"type":"action"},"version_id":"default_version","state":"disabled","desc":"Default Version"}],"type":"bind","desc":"New device registration"},{"policy_id":"default_auth","versions":[{"schema_version":2,"workflow":{"escapes":{"escapes":[]},"strings":[],"action":{"metadata":{"type":"auth_pass"},"type":"auth_pass"},"type":"action"},"version_id":"default_version","state":"disabled","desc":"Default Version"}],"type":"auth","config":{"token_create":true,"session_validate":false,"session_create":true,"token_include_request_params":true,"tip_config":null},"desc":"default auth"},{"policy_id":"default_display_devices","versions":[{"schema_version":2,"workflow":{"escapes":{"escapes":[]},"strings":[],"action":{"metadata":{"type":"auth_pass"},"type":"auth_pass"},"type":"action"},"version_id":"default_version","state":"disabled","desc":"Default Version"}],"type":"displayDevices","desc":"Before displaying the list of all devices"},{"policy_id":"default_rename_device","versions":[{"schema_version":2,"workflow":{"escapes":{"escapes":[]},"strings":[],"action":{"metadata":{"type":"auth_pass"},"type":"auth_pass"},"type":"action"},"version_id":"default_version","state":"disabled","desc":"Default Version"}],"type":"renameDevice","desc":"Before renaming a device"},{"policy_id":"default_remove_device","versions":[{"schema_version":2,"workflow":{"escapes":{"escapes":[]},"strings":[],"action":{"metadata":{"type":"auth_pass"},"type":"auth_pass"},"type":"action"},"version_id":"default_version","state":"disabled","desc":"Default Version"}],"type":"removeDevice","desc":"Before removing a device"},{"policy_id":"idp_login","versions":[{"schema_version":2,"filter_criteria":{"type":"expression","value":{"type":"expression","value":"true"}},"workflow":{"debug_id":"e754b488-439f-4f29-9f74-314216f0b329","escapes":{"escapes":[]},"strings":[],"action":{"metadata":{"type":"information"},"text":{"type":"expression","value":"`IDP Flow for citi`"},"button_text":{"type":"expression","value":"`OK`"},"title":{"type":"expression","value":"`IDP flow execution started!!!`"},"type":"information","parameters":[]},"type":"action","child":{"false_branch":{"debug_id":"e34c65e2-6cc4-4fef-967c-56bd4d38ff1e","escapes":{"escapes":[]},"strings":[],"action":{"dialog":{"text":{"type":"expression","value":"`Please rediect back to your application page!!!`"},"button_text":{"type":"expression","value":"`Exit`"},"title":{"type":"expression","value":"`Access Denied`"}},"clear_session":false,"metadata":{"type":"reject"},"type":"reject"},"type":"action"},"debug_id":"68b5f09a-5b19-42af-aff4-562e973865c4","condition":{"negated":false,"metadata":{"notes":"User validation","label":"user validation against user store","type":"generic_condition"},"field":{"type":"expression","value":"@contains(@policy.user().id,@policy.identityStore().username)"},"data_type":"boolean","type":"generic","operation":"==","value":{"type":"expression","value":"true"}},"true_branch":{"debug_id":"96bae363-29c4-4921-a37e-61e798e45fa0","escapes":{"escapes":[]},"strings":[],"action":{"cancel_button_text":{"type":"expression","value":"`Deny`"},"metadata":{"type":"confirmation"},"continue_button_text":{"type":"expression","value":"`Approve`"},"text":{"type":"expression","value":"`Do you wish to approve or Deny`"},"title":{"type":"expression","value":"`Please provide your consent to approve this authentication`"},"strategy":{"type":"reject"},"type":"confirmation","parameters":[]},"type":"action","child":{"debug_id":"e3ce5988-e1fc-4be1-b9b4-944619e9661d","escapes":{"escapes":[]},"strings":[],"action":{"metadata":{"type":"auth_pass"},"type":"auth_pass"},"type":"action"}},"type":"condition"}},"version_id":"default_version","state":"version","desc":"default_version"}],"type":"auth","config":{"token_create":true,"session_validate":false,"session_create":true,"token_include_request_params":true,"tip_config":null},"desc":"This is a portal login application"},{"policy_id":"external_connection","versions":[{"schema_version":2,"filter_criteria":{"type":"expression","value":{"type":"expression","value":"true"}},"workflow":{"debug_id":"a71f9f15-00b5-4228-baca-fedaac01e242","escapes":{"escapes":[]},"strings":[],"action":{"variables":[{"name":"external_connection","value":{"type":"expression","value":"@webrequests.mocky_test()"}}],"metadata":{"type":"set_variables"},"type":"set_variables"},"type":"action","child":{"debug_id":"e7e36fe7-27ad-4e07-acf7-a02fd3c53b95","escapes":{"escapes":[]},"strings":[],"action":{"metadata":{"type":"auth_pass"},"type":"auth_pass"},"type":"action"}},"version_id":"default_version","state":"version","desc":"default_version"}],"type":"auth","config":{"token_create":true,"session_validate":false,"session_create":true,"token_include_request_params":true,"tip_config":null},"desc":"journey maps to external connections"}],"scorer_id":"00000000-0000-0000-0000-000000000000","type":"oidc","version":0,"extensions":[],"procedures":[],"device_groups":[],"name":"citi bank oidc application","crypto_session_config":{"mode":"off"},"reporting_config":{"policy_eval_reporting":"all"},"id":"citi_oidcapp","categories":[{"name":"Something you know","id":"5649"},{"name":"Something you are","id":"4628"},{"name":"Something you have","id":"2741"}],"providers":{},"allowed_origins":[]},"display_name":"citi bank oidc application","category":"application","type":"normal","constraints":[{"server_version":"8.1.1","type":"server_version"}]},{"path":"tsasm:///scorers/00000000-0000-0000-0000-000000000000","data":{"mfa_rules":[],"authenticator_rules":[],"name":"Default","default_authenticator_score":0,"description":"This is a default Authenticators Scoring Policy; Please create your own and replace in applications","id":"00000000-0000-0000-0000-000000000000","initial_score":0,"modifiers":[],"strategy":{"type":"sum"},"type":"authenticators"},"display_name":"Default","category":"scorer","type":"already_exist","constraints":[{"server_version":"8.1.1","type":"server_version"}]}]},"headers":[]}
+{
+        "reports": [
+            {
+                "path": "tsasm:///providers/a278bcba-0c5a-4bec-a9bc-f369ef3b7b94",
+                "data": {
+                    "provider_type": "function-web-request",
+                    "name": "mocky_test",
+                    "provider_id": "a278bcba-0c5a-4bec-a9bc-f369ef3b7b94",
+                    "config": {
+                        "arguments": [],
+                        "wait_for_response": true,
+                        "type": "function-web-request",
+                        "web_request": {
+                            "headers": [],
+                            "fail_on_non_2xx_response": false,
+                            "response_format": {
+                                "type": "json_object"
+                            },
+                            "ssl_identities": {
+                                "trusted_identities": [
+                                    {
+                                        "provider_type": "db",
+                                        "alias": "testCert",
+                                        "type": "trusted",
+                                        "version": "1"
+                                    }
+                                ]
+                            },
+                            "method": "post",
+                            "connection_config": {
+                                "max_connections": null,
+                                "follow_redirect": false,
+                                "request_timeout": 30,
+                                "max_connection_lifetime": null,
+                                "max_response_content_length": 10485760,
+                                "idle_connection_in_pool_timeout": null,
+                                "use_cookie_store": false,
+                                "connection_timeout": 5,
+                                "expose_internal_OIDC_APIs": false,
+                                "expose_internal_journey_login_api": false,
+                                "request_timeout_unit": "seconds",
+                                "connection_timeout_unit": "seconds"
+                            },
+                            "body": {
+                                "type": "expression",
+                                "value": "`{}`"
+                            },
+                            "uri": {
+                                "type": "expression",
+                                "value": "`https://run.mocky.io/v3/460bad09-0daa-4cda-b23d-5195ba6c3823`"
+                            },
+                            "authentication": {
+                                "type": "no"
+                            },
+                            "logging_config": {
+                                "outgoing_requests_config": "off",
+                                "ok_response_config": "off",
+                                "failed_response_config": "off"
+                            }
+                        }
+                    },
+                    "enabled": true
+                },
+                "display_name": "mocky_test",
+                "category": "provider",
+                "type": "dont_import",
+                "constraints": [
+                    {
+                        "server_version": "8.1.1",
+                        "type": "server_version"
+                    }
+                ]
+            },
+            {
+                "path": "tsasm:///local_identities/db/oidc_key",
+                "display_name": "oidc_key / (db)",
+                "category": "localidentity",
+                "type": "dont_import",
+                "constraints": [
+                    {
+                        "server_version": "8.1.1",
+                        "type": "server_version"
+                    }
+                ],
+                "creation_data": {
+                    "expected_provider_type": "db",
+                    "expected_alias": "oidc_key",
+                    "type": "identity"
+                }
+            },
+            {
+                "path": "tsasm:///authproviders/62a0d53a-5923-4cd0-a8a8-5be5e12553ee",
+                "data": {
+                    "user_provider_id": "local-user-provider",
+                    "method": "password",
+                    "config_id": "62a0d53a-5923-4cd0-a8a8-5be5e12553ee",
+                    "include_provider_response": false,
+                    "name": "testUsers"
+                },
+                "display_name": "testUsers",
+                "category": "authprovider",
+                "type": "override",
+                "constraints": [
+                    {
+                        "server_version": "8.1.1",
+                        "type": "server_version"
+                    }
+                ]
+            },
+            {
+                "path": "tsasm:///providers/local-user-provider",
+                "data": {
+                    "provider_type": "user-local",
+                    "name": "Test Users",
+                    "provider_id": "local-user-provider",
+                    "enabled": true
+                },
+                "display_name": "Test Users",
+                "category": "provider",
+                "type": "dont_import",
+                "constraints": [
+                    {
+                        "server_version": "8.1.1",
+                        "type": "server_version"
+                    }
+                ]
+            },
+            {
+                "path": "tsasm:///trusted_identities/db/testCert/1",
+                "display_name": "testCert / (db)",
+                "category": "trustedidentity",
+                "type": "dont_import",
+                "constraints": [
+                    {
+                        "server_version": "8.1.1",
+                        "type": "server_version"
+                    }
+                ],
+                "creation_data": {
+                    "expected_provider_type": "db",
+                    "expected_alias": "testCert",
+                    "expected_version": "1",
+                    "type": "identity"
+                }
+            },
+            {
+                "path": "tsasm:///applications/citi_oidcapp",
+                "data": {
+                    "oidc_config": {
+                        "idp": {
+                            "base_url": {
+                                "type": "expression",
+                                "value": "`http://ec2-13-234-63-22.ap-south-1.compute.amazonaws.com:8080`"
+                            },
+                            "claims": [],
+                            "client_claims": []
+                        }
+                    },
+                    "token_config": {
+                        "token_headers": {},
+                        "default_strategy": "sign_and_encrypt",
+                        "expiry": {
+                            "act": 1800,
+                            "reg": 1800,
+                            "auth": 1800,
+                            "cfg": 1800,
+                            "pld": 1800
+                        },
+                        "local": {
+                            "provider_type": "db",
+                            "alias": "oidc_key",
+                            "type": "local"
+                        }
+                    },
+                    "user_association_config": {
+                        "strategy": {
+                            "type": "user_id"
+                        }
+                    },
+                    "allow_implicit_device_registration": true,
+                    "authenticators": [
+                        {
+                            "method": "password",
+                            "level": 1,
+                            "provider_config_id": "62a0d53a-5923-4cd0-a8a8-5be5e12553ee",
+                            "category": "5649",
+                            "enabled": true
+                        }
+                    ],
+                    "policies": [
+                        {
+                            "policy_id": "default_bind",
+                            "versions": [
+                                {
+                                    "schema_version": 2,
+                                    "workflow": {
+                                        "escapes": {
+                                            "escapes": []
+                                        },
+                                        "strings": [],
+                                        "action": {
+                                            "metadata": {
+                                                "type": "auth_pass"
+                                            },
+                                            "type": "auth_pass"
+                                        },
+                                        "type": "action"
+                                    },
+                                    "version_id": "default_version",
+                                    "state": "disabled",
+                                    "desc": "Default Version"
+                                }
+                            ],
+                            "type": "bind",
+                            "desc": "New device registration"
+                        },
+                        {
+                            "policy_id": "default_auth",
+                            "versions": [
+                                {
+                                    "schema_version": 2,
+                                    "workflow": {
+                                        "escapes": {
+                                            "escapes": []
+                                        },
+                                        "strings": [],
+                                        "action": {
+                                            "metadata": {
+                                                "type": "auth_pass"
+                                            },
+                                            "type": "auth_pass"
+                                        },
+                                        "type": "action"
+                                    },
+                                    "version_id": "default_version",
+                                    "state": "disabled",
+                                    "desc": "Default Version"
+                                }
+                            ],
+                            "type": "auth",
+                            "config": {
+                                "token_create": true,
+                                "session_validate": false,
+                                "session_create": true,
+                                "token_include_request_params": true,
+                                "tip_config": null
+                            },
+                            "desc": "default auth"
+                        },
+                        {
+                            "policy_id": "default_display_devices",
+                            "versions": [
+                                {
+                                    "schema_version": 2,
+                                    "workflow": {
+                                        "escapes": {
+                                            "escapes": []
+                                        },
+                                        "strings": [],
+                                        "action": {
+                                            "metadata": {
+                                                "type": "auth_pass"
+                                            },
+                                            "type": "auth_pass"
+                                        },
+                                        "type": "action"
+                                    },
+                                    "version_id": "default_version",
+                                    "state": "disabled",
+                                    "desc": "Default Version"
+                                }
+                            ],
+                            "type": "displayDevices",
+                            "desc": "Before displaying the list of all devices"
+                        },
+                        {
+                            "policy_id": "default_rename_device",
+                            "versions": [
+                                {
+                                    "schema_version": 2,
+                                    "workflow": {
+                                        "escapes": {
+                                            "escapes": []
+                                        },
+                                        "strings": [],
+                                        "action": {
+                                            "metadata": {
+                                                "type": "auth_pass"
+                                            },
+                                            "type": "auth_pass"
+                                        },
+                                        "type": "action"
+                                    },
+                                    "version_id": "default_version",
+                                    "state": "disabled",
+                                    "desc": "Default Version"
+                                }
+                            ],
+                            "type": "renameDevice",
+                            "desc": "Before renaming a device"
+                        },
+                        {
+                            "policy_id": "default_remove_device",
+                            "versions": [
+                                {
+                                    "schema_version": 2,
+                                    "workflow": {
+                                        "escapes": {
+                                            "escapes": []
+                                        },
+                                        "strings": [],
+                                        "action": {
+                                            "metadata": {
+                                                "type": "auth_pass"
+                                            },
+                                            "type": "auth_pass"
+                                        },
+                                        "type": "action"
+                                    },
+                                    "version_id": "default_version",
+                                    "state": "disabled",
+                                    "desc": "Default Version"
+                                }
+                            ],
+                            "type": "removeDevice",
+                            "desc": "Before removing a device"
+                        },
+                        {
+                            "policy_id": "idp_login",
+                            "versions": [
+                                {
+                                    "schema_version": 2,
+                                    "filter_criteria": {
+                                        "type": "expression",
+                                        "value": {
+                                            "type": "expression",
+                                            "value": "true"
+                                        }
+                                    },
+                                    "workflow": {
+                                        "debug_id": "e754b488-439f-4f29-9f74-314216f0b329",
+                                        "escapes": {
+                                            "escapes": []
+                                        },
+                                        "strings": [],
+                                        "action": {
+                                            "metadata": {
+                                                "type": "information"
+                                            },
+                                            "text": {
+                                                "type": "expression",
+                                                "value": "`IDP Flow for citi`"
+                                            },
+                                            "button_text": {
+                                                "type": "expression",
+                                                "value": "`OK`"
+                                            },
+                                            "title": {
+                                                "type": "expression",
+                                                "value": "`IDP flow execution started!!!`"
+                                            },
+                                            "type": "information",
+                                            "parameters": []
+                                        },
+                                        "type": "action",
+                                        "child": {
+                                            "false_branch": {
+                                                "debug_id": "e34c65e2-6cc4-4fef-967c-56bd4d38ff1e",
+                                                "escapes": {
+                                                    "escapes": []
+                                                },
+                                                "strings": [],
+                                                "action": {
+                                                    "dialog": {
+                                                        "text": {
+                                                            "type": "expression",
+                                                            "value": "`Please rediect back to your application page!!!`"
+                                                        },
+                                                        "button_text": {
+                                                            "type": "expression",
+                                                            "value": "`Exit`"
+                                                        },
+                                                        "title": {
+                                                            "type": "expression",
+                                                            "value": "`Access Denied`"
+                                                        }
+                                                    },
+                                                    "clear_session": false,
+                                                    "metadata": {
+                                                        "type": "reject"
+                                                    },
+                                                    "type": "reject"
+                                                },
+                                                "type": "action"
+                                            },
+                                            "debug_id": "68b5f09a-5b19-42af-aff4-562e973865c4",
+                                            "condition": {
+                                                "negated": false,
+                                                "metadata": {
+                                                    "notes": "User validation",
+                                                    "label": "user validation against user store",
+                                                    "type": "generic_condition"
+                                                },
+                                                "field": {
+                                                    "type": "expression",
+                                                    "value": "@contains(@policy.user().id,@policy.identityStore().username)"
+                                                },
+                                                "data_type": "boolean",
+                                                "type": "generic",
+                                                "operation": "==",
+                                                "value": {
+                                                    "type": "expression",
+                                                    "value": "true"
+                                                }
+                                            },
+                                            "true_branch": {
+                                                "debug_id": "96bae363-29c4-4921-a37e-61e798e45fa0",
+                                                "escapes": {
+                                                    "escapes": []
+                                                },
+                                                "strings": [],
+                                                "action": {
+                                                    "cancel_button_text": {
+                                                        "type": "expression",
+                                                        "value": "`Deny`"
+                                                    },
+                                                    "metadata": {
+                                                        "type": "confirmation"
+                                                    },
+                                                    "continue_button_text": {
+                                                        "type": "expression",
+                                                        "value": "`Approve`"
+                                                    },
+                                                    "text": {
+                                                        "type": "expression",
+                                                        "value": "`Do you wish to approve or Deny`"
+                                                    },
+                                                    "title": {
+                                                        "type": "expression",
+                                                        "value": "`Please provide your consent to approve this authentication`"
+                                                    },
+                                                    "strategy": {
+                                                        "type": "reject"
+                                                    },
+                                                    "type": "confirmation",
+                                                    "parameters": []
+                                                },
+                                                "type": "action",
+                                                "child": {
+                                                    "debug_id": "e3ce5988-e1fc-4be1-b9b4-944619e9661d",
+                                                    "escapes": {
+                                                        "escapes": []
+                                                    },
+                                                    "strings": [],
+                                                    "action": {
+                                                        "metadata": {
+                                                            "type": "auth_pass"
+                                                        },
+                                                        "type": "auth_pass"
+                                                    },
+                                                    "type": "action"
+                                                }
+                                            },
+                                            "type": "condition"
+                                        }
+                                    },
+                                    "version_id": "default_version",
+                                    "state": "version",
+                                    "desc": "default_version"
+                                }
+                            ],
+                            "type": "auth",
+                            "config": {
+                                "token_create": true,
+                                "session_validate": false,
+                                "session_create": true,
+                                "token_include_request_params": true,
+                                "tip_config": null
+                            },
+                            "desc": "This is a portal login application"
+                        },
+                        {
+                            "policy_id": "external_connection",
+                            "versions": [
+                                {
+                                    "schema_version": 2,
+                                    "filter_criteria": {
+                                        "type": "expression",
+                                        "value": {
+                                            "type": "expression",
+                                            "value": "true"
+                                        }
+                                    },
+                                    "workflow": {
+                                        "debug_id": "a71f9f15-00b5-4228-baca-fedaac01e242",
+                                        "escapes": {
+                                            "escapes": []
+                                        },
+                                        "strings": [],
+                                        "action": {
+                                            "variables": [
+                                                {
+                                                    "name": "external_connection",
+                                                    "value": {
+                                                        "type": "expression",
+                                                        "value": "@webrequests.mocky_test()"
+                                                    }
+                                                }
+                                            ],
+                                            "metadata": {
+                                                "type": "set_variables"
+                                            },
+                                            "type": "set_variables"
+                                        },
+                                        "type": "action",
+                                        "child": {
+                                            "debug_id": "e7e36fe7-27ad-4e07-acf7-a02fd3c53b95",
+                                            "escapes": {
+                                                "escapes": []
+                                            },
+                                            "strings": [],
+                                            "action": {
+                                                "metadata": {
+                                                    "type": "auth_pass"
+                                                },
+                                                "type": "auth_pass"
+                                            },
+                                            "type": "action"
+                                        }
+                                    },
+                                    "version_id": "default_version",
+                                    "state": "version",
+                                    "desc": "default_version"
+                                }
+                            ],
+                            "type": "auth",
+                            "config": {
+                                "token_create": true,
+                                "session_validate": false,
+                                "session_create": true,
+                                "token_include_request_params": true,
+                                "tip_config": null
+                            },
+                            "desc": "journey maps to external connections"
+                        }
+                    ],
+                    "scorer_id": "00000000-0000-0000-0000-000000000000",
+                    "type": "oidc",
+                    "version": 0,
+                    "extensions": [],
+                    "procedures": [],
+                    "device_groups": [],
+                    "name": "citi bank oidc application",
+                    "crypto_session_config": {
+                        "mode": "off"
+                    },
+                    "reporting_config": {
+                        "policy_eval_reporting": "all"
+                    },
+                    "id": "citi_oidcapp",
+                    "categories": [
+                        {
+                            "name": "Something you know",
+                            "id": "5649"
+                        },
+                        {
+                            "name": "Something you are",
+                            "id": "4628"
+                        },
+                        {
+                            "name": "Something you have",
+                            "id": "2741"
+                        }
+                    ],
+                    "providers": {},
+                    "allowed_origins": []
+                },
+                "display_name": "citi bank oidc application",
+                "category": "application",
+                "type": "override",
+                "constraints": [
+                    {
+                        "server_version": "8.1.1",
+                        "type": "server_version"
+                    }
+                ]
+            },
+            {
+                "path": "tsasm:///scorers/00000000-0000-0000-0000-000000000000",
+                "data": {
+                    "mfa_rules": [],
+                    "authenticator_rules": [],
+                    "name": "Default",
+                    "default_authenticator_score": 0,
+                    "description": "This is a default Authenticators Scoring Policy; Please create your own and replace in applications",
+                    "id": "00000000-0000-0000-0000-000000000000",
+                    "initial_score": 0,
+                    "modifiers": [],
+                    "strategy": {
+                        "type": "sum"
+                    },
+                    "type": "authenticators"
+                },
+                "display_name": "Default",
+                "category": "scorer",
+                "type": "override",
+                "constraints": [
+                    {
+                        "server_version": "8.1.1",
+                        "type": "server_version"
+                    }
+                ]
+            }
+        ]
+    },
+    "headers": []
+}

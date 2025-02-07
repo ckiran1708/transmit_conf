@@ -1,0 +1,93 @@
+{
+        "reports": [
+            {
+                "path": "tsasm:///trusted_identities/db/testCert/1",
+                "display_name": "testCert / (db)",
+                "category": "trustedidentity",
+                "type": "dont_import",
+                "constraints": [
+                    {
+                        "server_version": "8.1.1",
+                        "type": "server_version"
+                    }
+                ],
+                "creation_data": {
+                    "expected_provider_type": "db",
+                    "expected_alias": "testCert",
+                    "expected_version": "1",
+                    "type": "identity"
+                }
+            },
+            {
+                "path": "tsasm:///providers/a278bcba-0c5a-4bec-a9bc-f369ef3b7b94",
+                "data": {
+                    "provider_type": "function-web-request",
+                    "name": "mocky_test_silver",
+                    "provider_id": "a278bcba-0c5a-4bec-a9bc-f369ef3b7b94",
+                    "config": {
+                        "arguments": [],
+                        "wait_for_response": true,
+                        "type": "function-web-request",
+                        "web_request": {
+                            "headers": [],
+                            "fail_on_non_2xx_response": false,
+                            "response_format": {
+                                "type": "json_object"
+                            },
+                            "ssl_identities": {
+                                "trusted_identities": [
+                                    {
+                                        "provider_type": "db",
+                                        "alias": "testCert",
+                                        "type": "trusted",
+                                        "version": "1"
+                                    }
+                                ]
+                            },
+                            "method": "post",
+                            "connection_config": {
+                                "max_connections": null,
+                                "follow_redirect": false,
+                                "request_timeout": 30,
+                                "max_connection_lifetime": null,
+                                "max_response_content_length": 10485760,
+                                "idle_connection_in_pool_timeout": null,
+                                "use_cookie_store": false,
+                                "connection_timeout": 5,
+                                "expose_internal_OIDC_APIs": false,
+                                "expose_internal_journey_login_api": false,
+                                "request_timeout_unit": "seconds",
+                                "connection_timeout_unit": "seconds"
+                            },
+                            "body": {
+                                "type": "expression",
+                                "value": "`{}`"
+                            },
+                            "uri": {
+                                "type": "expression",
+                                "value": "`${mocky_test}`"
+                            },
+                            "authentication": {
+                                "type": "no"
+                            },
+                            "logging_config": {
+                                "outgoing_requests_config": "off",
+                                "ok_response_config": "off",
+                                "failed_response_config": "off"
+                            }
+                        }
+                    },
+                    "enabled": true
+                },
+                "display_name": "mocky_test_silver",
+                "category": "provider",
+                "type": "override",
+                "constraints": [
+                    {
+                        "server_version": "8.1.1",
+                        "type": "server_version"
+                    }
+                ]
+            }
+        ]
+    }

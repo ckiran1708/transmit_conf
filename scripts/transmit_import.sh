@@ -29,12 +29,15 @@ for arg in "$@"; do
     case $arg in
         --external_connections=true)
             JSON_FILE="$BASE_DIR/external_connections.json"
+            call_import();
             ;;
         --applications=true)
             JSON_FILE="$BASE_DIR/applications.json"
+            call_import();
             ;;
         --typed_lists=true)
             JSON_FILE="$BASE_DIR/typedllists.json"
+            call_import();
             ;;
         *)
             echo "Invalid argument: $arg"
@@ -50,6 +53,8 @@ if [ ! -f "$JSON_FILE" ]; then
 fi
 
 # Make the API request with the JSON data
+
+function call_import(){
 curl --location "$API_URL" \
     --header "$AUTH_HEADER" \
     --header "$CONTENT_TYPE" \
@@ -57,7 +62,7 @@ curl --location "$API_URL" \
     --data @"$JSON_FILE"
 
 # Print success message
-echo "Import request completed using $JSON_FILE"
-
+echo $arg "Import request completed using $JSON_FILE"
+}
 
 
